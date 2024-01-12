@@ -6,10 +6,7 @@ import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import br.com.webapp.screenmatch.models.DadosEpisodio;
-import br.com.webapp.screenmatch.models.DadosSerie;
-import br.com.webapp.screenmatch.models.DadosTemporada;
-import br.com.webapp.screenmatch.models.Episodio;
+import br.com.webapp.screenmatch.models.*;
 import br.com.webapp.screenmatch.services.ConsumoApi;
 import br.com.webapp.screenmatch.services.ConverteDados;
 
@@ -84,7 +81,13 @@ public class Principal {
     }
 
     private void listarSeriesBuscados() {
-        dadosSeries.forEach(System.out::println);
+        List< Serie> series = new ArrayList<>();
+        series = dadosSeries.stream()
+                        .map(d -> new Serie(d))
+                        .collect(Collectors.toList());
+        series.stream()
+                        .sorted(Comparator.comparing(Serie::getGenero))
+                        .forEach(System.out::println);
         System.out.println();
     }
 }
