@@ -51,6 +51,14 @@ public class Episodio {
         this.id = id;
     }
 
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
     public Integer getTemporada() {
         return temporada;
     }
