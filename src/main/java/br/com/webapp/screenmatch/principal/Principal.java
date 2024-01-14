@@ -7,6 +7,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import br.com.webapp.screenmatch.models.*;
+import br.com.webapp.screenmatch.models.enums.Categoria;
 import br.com.webapp.screenmatch.repository.SerieRepository;
 import br.com.webapp.screenmatch.services.ConsumoApi;
 import br.com.webapp.screenmatch.services.ConverteDados;
@@ -37,6 +38,9 @@ public class Principal {
                     3 - Listar Series
                     4 - Buscar série por título
                     5 - Buscar série por ator
+                    6 - Top 5 séries mais bem avaliadas
+                    7 - Buscar séries por categoria
+                    8 - Filtrar séries por total de temporadas
                                     
                     0 - Sair                                 
                     """;
@@ -60,6 +64,15 @@ public class Principal {
                     break;
                 case 5:
                     buscarSeriePorAtor();
+                    break;
+                case 6:
+                    buscarMelhoresSeries();
+                    break;
+                case 7:
+                    buscarPorCategoria();
+                    break;
+                case 8:
+                    buscarQuantidadeTemporadas();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -142,6 +155,35 @@ public class Principal {
         var avaliacao = sc.nextDouble();
         List<Serie> serieEncontradas = repositorio.findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, avaliacao);
         System.out.println("Série em que " + nomeAtor + " participou: ");
+        serieEncontradas.forEach(s ->
+                System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarMelhoresSeries(){
+        System.out.println("Melhores séries: ");
+        List<Serie> melhoresSeries = repositorio.findTop5ByOrderByAvaliacaoDesc();
+        melhoresSeries.forEach(s ->
+                System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
+
+    }
+
+    public void buscarPorCategoria(){
+        System.out.println("Qual categoria deseja buscar?");
+        var nomeGenero = sc.nextLine();
+        Categoria categoria = Categoria.fromPortugues(nomeGenero);
+        List<Serie> seriePorCategoria = repositorio.findByGenero(categoria);
+        System.out.println("Séries da categoria " + categoria + ": ");
+        seriePorCategoria.forEach(s ->
+                System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
+    }
+
+    public void buscarQuantidadeTemporadas(){
+        System.out.println("Qual o total de temporadas deseja buscar? ");
+        var totalTemporadas = sc.nextInt();
+        System.out.println("A partir de qual avaliação deseja buscar? ");
+        var avaliacao = sc.nextDouble();
+        List<Serie> serieEncontradas = repositorio.findByTotalTemporadasAndAvaliacaoGreaterThanEqual(totalTemporadas, avaliacao);
+        System.out.println("Filmes com " + totalTemporadas + " temporadas: ");
         serieEncontradas.forEach(s ->
                 System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
     }
