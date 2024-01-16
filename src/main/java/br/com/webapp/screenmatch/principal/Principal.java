@@ -45,6 +45,7 @@ public class Principal {
                     8 - Filtrar séries por total de temporadas
                     9 - Buscar episódios por trecho de texto
                     10 - Top 5 episódios mais bem avaliados
+                    11 - Buscar episódios por data de lançamento
                                     
                     0 - Sair                                 
                     """;
@@ -83,6 +84,9 @@ public class Principal {
                     break;
                 case 10:
                     topEpisodiosPorSerie();
+                    break;
+                case 11:
+                    buscarEpisodioPorDataDeLancamento();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -217,6 +221,22 @@ public class Principal {
             Serie serie = serieBuscada.get();
             List<Episodio> topEpisodios = repositorio.topEpisodiosPorSerie(serie);
             topEpisodios.forEach(e ->
+                    System.out.printf("Série: %s Temporada %s - Episódio %s - %s Avaliação %s\n",
+                            e.getSerie().getTitulo(), e.getTemporada(),
+                            e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao() ));
+        }
+    }
+
+    private void buscarEpisodioPorDataDeLancamento(){
+        buscarSeriePorTitulo();
+        if (serieBuscada.isPresent()){
+            Serie serie = serieBuscada.get();
+            System.out.println("Digite o ano limite de lançamento: ");
+            var anoLancamento = sc.nextInt();
+            sc.nextLine();
+
+            List<Episodio> episodiosAno = repositorio.episodioPorSerieEAno(serie, anoLancamento);
+            episodiosAno.forEach(e ->
                     System.out.printf("Série: %s Temporada %s - Episódio %s - %s Avaliação %s\n",
                             e.getSerie().getTitulo(), e.getTemporada(),
                             e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao() ));
