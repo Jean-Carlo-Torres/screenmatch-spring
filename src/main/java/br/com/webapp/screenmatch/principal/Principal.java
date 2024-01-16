@@ -41,6 +41,7 @@ public class Principal {
                     6 - Top 5 séries mais bem avaliadas
                     7 - Buscar séries por categoria
                     8 - Filtrar séries por total de temporadas
+                    9 - Buscar episódios por trecho de texto
                                     
                     0 - Sair                                 
                     """;
@@ -73,6 +74,9 @@ public class Principal {
                     break;
                 case 8:
                     buscarQuantidadeTemporadas();
+                    break;
+                case 9:
+                    buscarEpisodioPorTrecho();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -167,7 +171,7 @@ public class Principal {
 
     }
 
-    public void buscarPorCategoria(){
+    private void buscarPorCategoria(){
         System.out.println("Qual categoria deseja buscar?");
         var nomeGenero = sc.nextLine();
         Categoria categoria = Categoria.fromPortugues(nomeGenero);
@@ -177,7 +181,7 @@ public class Principal {
                 System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
     }
 
-    public void buscarQuantidadeTemporadas(){
+    private void buscarQuantidadeTemporadas(){
         System.out.println("Qual o total de temporadas deseja buscar? ");
         var totalTemporadas = sc.nextInt();
         System.out.println("A partir de qual avaliação deseja buscar? ");
@@ -186,5 +190,17 @@ public class Principal {
         System.out.println("Séries com até " + totalTemporadas + " temporadas: ");
         serieEncontradas.forEach(s ->
                 System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarEpisodioPorTrecho(){
+        System.out.println("Qual o trecho deseja buscar? ");
+        var trechoEpisodio = sc.nextLine();
+        List<Episodio> episodiosEncontrados = repositorio.episodiosPorTrecho(trechoEpisodio);
+        episodiosEncontrados.forEach(e ->
+                System.out.printf("Série: %s, Temporada %s - Episódio: %s - %s\n",
+                        e.getSerie().getTitulo(), e.getTemporada(),
+                        e.getNumeroEpisodio(), e.getTitulo()
+                )
+        );
     }
 }
