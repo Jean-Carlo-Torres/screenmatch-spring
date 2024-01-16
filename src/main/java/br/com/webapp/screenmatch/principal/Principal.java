@@ -182,8 +182,8 @@ public class Principal {
         var totalTemporadas = sc.nextInt();
         System.out.println("A partir de qual avaliação deseja buscar? ");
         var avaliacao = sc.nextDouble();
-        List<Serie> serieEncontradas = repositorio.findByTotalTemporadasAndAvaliacaoGreaterThanEqual(totalTemporadas, avaliacao);
-        System.out.println("Filmes com " + totalTemporadas + " temporadas: ");
+        List<Serie> serieEncontradas = repositorio.seriesPorTemporadaEAValiacao(totalTemporadas, avaliacao);
+        System.out.println("Séries com até " + totalTemporadas + " temporadas: ");
         serieEncontradas.forEach(s ->
                 System.out.println(s.getTitulo() + ", avaliação: " + s.getAvaliacao()));
     }
