@@ -1,5 +1,6 @@
 package br.com.webapp.screenmatch.services;
 
+import br.com.webapp.screenmatch.dto.EpisodioDTO;
 import br.com.webapp.screenmatch.dto.SerieDTO;
 import br.com.webapp.screenmatch.models.Serie;
 import br.com.webapp.screenmatch.repository.SerieRepository;
@@ -31,7 +32,7 @@ public class SerieService {
     }
 
     public List<SerieDTO> obterLancamento() {
-        return converteDados(repositorio.findTop5ByOrderByEpisodiosDataLancamentoDesc());
+       return converteDados(repositorio.lancamentosMaisRecentes());
     }
 
     public SerieDTO obterPorId(Long id) {
@@ -42,4 +43,18 @@ public class SerieService {
         }
         return null;
     }
+
+    public List<EpisodioDTO> obterTodasTemporadas(Long id) {
+        Optional<Serie> serie = repositorio.findById(id);
+
+        if (serie.isPresent()) {
+            Serie s = serie.get();
+            return s.getEpisodios().stream()
+                    .map(e -> new EpisodioDTO(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
+
+
 }
