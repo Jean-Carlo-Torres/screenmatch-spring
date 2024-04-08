@@ -1,8 +1,6 @@
 # ScreenMatch
 Projeto realizado durante a formação Java Web da Alura, com a proposta de criar uma aplicação web utilizando o Spring Boot e consumindo as APIs do OMDB e ChatGPT, para extrair e tratar dados de séries e depois exibir no front end.
 
-<img src="https://private-user-images.githubusercontent.com/66698429/283485095-d1e7755b-0a61-411f-bb99-9fcfda44f00c.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU1OTcwMDUsIm5iZiI6MTcwNTU5NjcwNSwicGF0aCI6Ii82NjY5ODQyOS8yODM0ODUwOTUtZDFlNzc1NWItMGE2MS00MTFmLWJiOTktOWZjZmRhNDRmMDBjLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMTglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTE4VDE2NTE0NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTJhZTk2ZjZhYjA4MzgxNGM4YmJiMDM5MDY3ZmQ5ZDMyNjI3ZTIzYzhlYzE5ZDU4MDE1NTMzZmEwZTY4YjNmZTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.8z0VLLidg-StUq0SfQe8kcOtFMX1cDlVluw8iH4jvew">
-
 <hr>
 
 ### Página do ScreenMatch
@@ -12,9 +10,7 @@ Projeto realizado durante a formação Java Web da Alura, com a proposta de cria
 Front-End disponibilizado pela instrutora <br>
 <a href="https://github.com/alura-cursos/3356-java-web-front">Layout</a>
 
-<hr>
-
-### Funcionalidades
+## 🔨 Funcionalidades do projeto
 1. Obter Todas as Séries
    Endpoint: /series/todas
 
@@ -55,9 +51,9 @@ Descrição: Retorna as séries com base na categoria (gênero) especificada.
 
 Descrição: Retorna os top episódios de uma série com base na avaliação.
 
-<hr>
 
-### Tecnologias e Dependências
+
+## ✔️ Técnicas e tecnologias utilizadas
 * Java
 * Spring Boot
 * PostgreSQL
@@ -70,7 +66,7 @@ Descrição: Retorna os top episódios de uma série com base na avaliação.
 * <a href="https://platform.openai.com/overview">OpenAI API (ChatGPT)</a>
 
 
-### Contribuições
+## 🤝 Contribuições
 * Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas, propor melhorias ou enviar solicitações de pull.
 <hr>
 
